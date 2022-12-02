@@ -21,32 +21,54 @@
 SHAPE_POINTS = {"Rock":1, "Paper":2, "Scissors":3}
 
 SHAPES = {
-    # "Rock":["A", "X"],
-    # "Paper":["B", "Y"],
-    # "Scissors":["C","Z"]
-    "X": "Rock",
-    "Y": "Paper",
-    "Z": "Scissors",
+    # "X": "Rock",
+    # "Y": "Paper",
+    # "Z": "Scissors",
     "A": "Rock",
     "B": "Paper",
     "C": "Scissors"
-    }
+}
 
-OUTCOMES = {
+# OUTCOMES = {
+#     "Rock": {
+#         "Scissors":0,
+#         "Rock":3,
+#         "Paper":6
+#         },
+#     "Paper": {
+#         "Scissors":6,
+#         "Rock":0,
+#         "Paper":3
+#     },
+#     "Scissors": {
+#         "Scissors":3,
+#         "Rock":6,
+#         "Paper":0
+#     }
+# }
+
+#Part 2
+POINTS = {
+    "X": 0,
+    "Y": 3,
+    "Z": 6
+}
+
+CHOICES = {
     "Rock": {
-        "Scissors":0,
-        "Rock":3,
-        "Paper":6
+        "Z":"Paper",
+        "X":"Scissors",
+        "Y":"Rock"
         },
     "Paper": {
-        "Scissors":6,
-        "Rock":0,
-        "Paper":3
+        "Z":"Scissors",
+        "X":"Rock",
+        "Y":"Paper"
     },
     "Scissors": {
-        "Scissors":3,
-        "Rock":6,
-        "Paper":0
+        "Z":"Rock",
+        "X":"Paper",
+        "Y":"Scissors"
     }
 }
 
@@ -56,10 +78,20 @@ with open('Day2/strategyInput.txt') as f:
         turns.append(line.strip())
 
 sum = 0
+#Part 1 Solution
+# for turn in turns:
+#     opponentPlay = SHAPES[turn[0]]
+#     myPlay = SHAPES[turn[-1]]
+#     outcome = OUTCOMES[opponentPlay][myPlay]
+#     turnPoints = SHAPE_POINTS[myPlay] + outcome
+#     sum += turnPoints
+# print(sum)
+
+#Part 2 Solution
 for turn in turns:
     opponentPlay = SHAPES[turn[0]]
-    myPlay = SHAPES[turn[-1]]
-    outcome = OUTCOMES[opponentPlay][myPlay]
-    turnPoints = SHAPE_POINTS[myPlay] + outcome
+    myPlay = CHOICES[opponentPlay][turn[-1]]
+    # print(myPlay)
+    turnPoints = SHAPE_POINTS[myPlay] + POINTS[turn[-1]]
     sum += turnPoints
 print(sum)
