@@ -30,7 +30,7 @@
 # Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?
 calInput = []
 sums = []
-with open('Day 1/calorieInput.txt') as f:
+with open('Day1/calorieInput.txt') as f:
 
     for line in f:
         calInput.append(line.strip())
